@@ -1,10 +1,18 @@
 
 /* You will not be able to see this text on webpage. comments are mentioned here */
+.header {
+        text-align: center;
+        border-bottom: solid;
+        color: #008000;
+        margin-bottom: 2rem;
+}
 
 .table {
         border-spacing: 0;
         margin: 1rem;
         background-color: #f5f5f5;
+        margin-left: auto;
+        margin-right: auto;
 }
 
 .table__row:nth-child(even) {
