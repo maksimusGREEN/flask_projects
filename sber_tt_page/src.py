@@ -7,9 +7,8 @@ headers = {'user-agent': 'my-agent/1.0.1'}
 
 page_link = 'https://rttf.ru/players/'
 
-data = []
-
 def get_players_data(players_list):
+    data = []
     for player in players_list:
         page = requests.get(page_link+player, headers=headers)
         soup = BeautifulSoup(page.content, "html.parser")
