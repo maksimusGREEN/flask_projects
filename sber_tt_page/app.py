@@ -1,8 +1,8 @@
 from flask import Flask, render_template, g
 from FDataBase import FDataBase
 import os, sqlite3
-from src import get_players_data
-from flask_apscheduler import APScheduler
+#from src import get_players_data
+#from flask_apscheduler import APScheduler
 
 DATABASE = '/tmp/sberteam.db'
 DEBUG = False
@@ -33,7 +33,7 @@ app.config.update(dict(DATABASE=os.path.join(app.root_path,'sberteam.db')))
 
 
 headings = ('№', 'ФИО', 'Рейтинг', 'Дата последнего турнира')
-players_list = ['81844', '101970', '54312', '117961', '12499', '50127', '84215', '2418', '79013', '86618', '55733', '23020', '5323', '18041', '14906', '10683', '23499', '6623', '55062', '22722', '114302', '112570', '75480', '131056']
+
 
 def connect_db():
     conn = sqlite3.connect(app.config['DATABASE'])
@@ -46,21 +46,21 @@ def close_db(error):
     if hasattr(g, 'link_db'):
         g.link_db.close()
 
-if __name__=='__main__':
-    scheduler = APScheduler()
-    scheduler.init_app(app)
-    scheduler.start()
+# if __name__=='__main__':
+#     scheduler = APScheduler()
+#     scheduler.init_app(app)
+#     scheduler.start()
 
 # определение задачи
-@scheduler.task('interval', id='update_db', seconds=7200)
-def update_database():
-    with app.app_context():
-        db = get_db()
-        dbase = FDataBase(db)
-        dbase.clearTable()
-        data = get_players_data(players_list)
-        for row in data:
-            dbase.fillTable(*row)
+# @scheduler.task('interval', id='update_db', seconds=7200)
+# def update_database():
+#     with app.app_context():
+#         db = get_db()
+#         dbase = FDataBase(db)
+#         dbase.clearTable()
+#         data = get_players_data(players_list)
+#         for row in data:
+#             dbase.fillTable(*row)
 
 #app routing to url
 @app.route("/")
