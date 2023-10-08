@@ -19,6 +19,6 @@ def get_players_data(players_list):
         last_tournament = [x.text.split('<var>')[0] for x in last_tournament][0][:10]
         data.append([name, rate, last_tournament])
     df = np.array(data)
-    df = np.concatenate([np.arange(1, len(df)+1).reshape(-1,1), df[df[:,-2].argsort()[::-1]]], axis=1)
+    df = np.concatenate([np.arange(1, len(df)+1).reshape(-1,1), df[df[:,-2].astype(int).argsort()[::-1]]], axis=1)
     data = df.tolist()
     return data
