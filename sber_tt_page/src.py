@@ -12,7 +12,7 @@ def get_players_data(players_list):
     for player in players_list:
         page = requests.get(page_link+player, headers=headers)
         soup = BeautifulSoup(page.content, "html.parser")
-        name = soup.find(class_='player-info').findAll('h1')[0].contents[0]
+        name = ' '.join(soup.find(class_='player-info').findAll('h1')[0].contents[0].split(' ')[:2])
         rate = soup.find(class_='player-info').findAll('h3')[0].find('dfn').contents[0]
         last_tournament = soup.find(class_='player-results').findAll('a', href=True)
         last_tournament= [x for x in last_tournament if 'tournaments' in x['href']]

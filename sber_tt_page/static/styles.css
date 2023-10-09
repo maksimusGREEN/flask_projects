@@ -26,3 +26,8 @@
 .table__cell {
         padding: 8px;
 }
+
+.table__cell:nth-child(3),
+.table__cell:nth-child(4) {
+  text-align: center;
+}
